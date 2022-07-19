@@ -9,3 +9,54 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model users {
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+}
+
+model categories { 
+  id Int @id @default(autoincrement())
+  name String @unique
+  test tests[]
+}
+
+model tests {
+  id Int @id @default(autoincrement())
+  name String
+  pdfUrl String
+  categoryId Int
+  teacherDisciplineId Int
+  teachersDiscipline teachersDisciplines @relation(fields: [teacherDisciplineId], references: [id])
+  category categories @relation(fields: [categoryId], references: [id])
+}
+
+model teachers { 
+  id Int @id @default(autoincrement())
+  name String @unique
+  tearcherDiscipline teachersDisciplines[]
+}
+
+model teachersDisciplines{
+  id Int @id @default(autoincrement())
+  teacherId Int
+  disciplineId Int
+  teacher teachers @relation(fields: [teacherId], references: [id])
+  discipline disciplines @relation(fields: [disciplineId], references: [id])
+  test tests[]
+}
+
+model disciplines {
+  id Int @id @default(autoincrement())
+  name String @unique
+  termId Int
+  term terms @relation(fields: [termId], references: [id])
+  tearcherDiscipline teachersDisciplines[]
+}
+
+model terms {
+  id Int @id @default(autoincrement())
+  number Int @unique
+  discipline disciplines[]
+}
