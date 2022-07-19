@@ -6,6 +6,6 @@ import signUpMiddleware from "../../middlewares/signUpMiddleware";
 const users = Router();
 
 users.post('/sign-up', signUpMiddleware, signUpController);
-users.post('/sign-up', signInMiddleware, signInController);
+users.post('/sign-in', signInMiddleware, signInController);
 
 export default users;

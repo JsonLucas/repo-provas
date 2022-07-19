@@ -5,9 +5,10 @@ const authActionsMiddleware = async (req: Request, res: Response, next: NextFunc
     const { authorization } = req.headers;
     if(!authorization) throw { code: 401 };
 
-    const decode = decodeToken(authorization);
-    console.log(authorization, decode);
-    res.sendStatus(200);
+    const token = authorization.split(' ');
+    const decode = decodeToken(token[1]);
+    res.locals.userId = decode;
+    next();
 }
 
 export default authActionsMiddleware;
