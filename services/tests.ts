@@ -1,5 +1,15 @@
-import { insert, getTestsByTeacherDisciplineId } from "../repositories/tests";
+import { 
+    insert, 
+    getTestsByTeacherDisciplineId, 
+    getTestsByDisciplineName,
+    getTestsByTeacherName
+} from "../repositories/tests";
 
-const testsServices = { insert, getTestsByTeacherDisciplineId };
+const testsServices = { 
+    insert, 
+    getTestsByTeacherDisciplineId, 
+    getTestsByDisciplineName,
+    getTestsByTeacherName
+};
 
 export default testsServices;

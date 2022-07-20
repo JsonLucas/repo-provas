@@ -1,7 +1,8 @@
-import { getByName } from "../repositories/teacher"
+import { getByName, getTeachersDisciplinesByTeacherName } from "../repositories/teacher"
 
 const teachersServices = {
-    getByName
+    getByName,
+    getTeachersDisciplinesByTeacherName
 }
 
 export default teachersServices;

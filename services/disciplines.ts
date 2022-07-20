@@ -1,8 +1,9 @@
-import { getByName, getTeachersDisciplines } from "../repositories/disciplines";
+import { 
+    getByName 
+} from "../repositories/disciplines";
 
 const disciplinesServices = {
-    getByName,
-    getTeachersDisciplines
+    getByName
 }
 
 export default disciplinesServices;
