@@ -9,9 +9,11 @@ export interface Error {
 interface AuxTypes {
     category?: string,
     teacher?: string,
-    discipline?: string
+    discipline?: string,
+    confirmPassword?: string
 }
 
-export type signUsers = Omit<users, 'id'>;
+export type signInUser = Omit<users, 'id'>;
+export type signUpUser = Omit<users, 'id'> & Pick<AuxTypes, 'confirmPassword'>;
 export type setTest = Omit<tests, 'id' | 'categoryId' | 'teacherDisciplineId'> 
 & Pick<AuxTypes, 'category' | 'teacher' | 'discipline'>;

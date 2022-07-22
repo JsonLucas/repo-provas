@@ -1,7 +1,13 @@
 import joi from 'joi';
-import { setTest, signUsers } from '../../types';
+import { setTest, signUpUser, signInUser } from '../../types';
 
-export const signUpSchema = joi.object<signUsers>({
+export const signUpSchema = joi.object<signUpUser>({
+    email: joi.string().email().required(),
+    password: joi.string().required(),
+    confirmPassword: joi.ref('password')
+});
+
+export const signInSchema = joi.object<signInUser>({
     email: joi.string().email().required(),
     password: joi.string().required()
 });
