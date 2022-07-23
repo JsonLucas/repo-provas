@@ -10,14 +10,15 @@
     "jsonwebtoken": "^8.5.1",
     "prisma": "^4.0.0"
   },
+  "prisma": {
+    "seed": "ts-node ./prisma/seed.ts"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "nodemon",
     "start": "node ./dist/server.js",
-    "test": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules jest -i"
-  },
-  "prisma": {
-    "seed": "ts-node ./prisma/seed.ts"
+    "migrate-database-test": "dotenv -e .env.test prisma migrate dev",
+    "test": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test cross-env NODE_OPTIONS=--experimental-vm-modules jest -i"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

@@ -14,7 +14,7 @@ export const setTestMiddleware = async (req: Request, res: Response, next: NextF
 export const getTestsByDisciplineMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const { disciplineName } = req.params;
     const tests = await testsServices.getTestsByDisciplineName(disciplineName);
-    if(!tests) throw { code: 404 };
+    if((!tests) || (tests.length === 0)) throw { code: 404 };
 
     res.locals.testsByDiscipline = tests;
     next();
@@ -23,7 +23,7 @@ export const getTestsByDisciplineMiddleware = async (req: Request, res: Response
 export const getTestsByTeacherMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const { teacherName } = req.params;
     const tests = await testsServices.getTestsByTeacherName(teacherName);
-    if(!tests) throw { code: 404 };
+    if((!tests) || (tests.length === 0)) throw { code: 404 };
 
     res.locals.testsByTeacher = tests;
     next();
