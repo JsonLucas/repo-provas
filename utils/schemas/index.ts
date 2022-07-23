@@ -15,7 +15,9 @@ export const signInSchema = joi.object<signInUser>({
 export const testsSchema = joi.object<setTest>({
     name: joi.string().required(),
     pdfUrl: joi.string().uri().required(),
-    category: joi.string().equal('Prática', 'Recuperação', 'category').required(),
+    category: joi.string().equal('Prática', 'Recuperação', 'test_category', 'test-category').required(),
     teacher: joi.string().required(),
     discipline: joi.string().required()
 });
+
+//tests are included

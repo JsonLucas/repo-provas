@@ -2,6 +2,16 @@ import prisma from "../database";
 
 const GENERIC_ID: number = 1;
 
+beforeEach(async () => {
+    await prisma.$executeRaw`TRUNCATE TABLE users;`;
+    await prisma.$executeRaw`TRUNCATE TABLE categories;`;
+    await prisma.$executeRaw`TRUNCATE TABLE teachers;`;
+    await prisma.$executeRaw`TRUNCATE TABLE terms;`;
+    await prisma.$executeRaw`TRUNCATE TABLE disciplines;`;
+    await prisma.$executeRaw`TRUNCATE TABLE "teachersDisciplines";`;
+    await prisma.$executeRaw`TRUNCATE TABLE tests;`;
+});
+
 const signUpSeed = async () => {
     const email = 'teste@email.com'
     const password = '123';
@@ -19,7 +29,7 @@ const categorySeed = async () => {
         update: {},
         create: { name }
     });
-}  
+}
 
 const teacherSeed = async () => {
     const name = 'test_teacher';
@@ -37,7 +47,7 @@ const termSeed = async () => {
         update: {},
         create: { number }
     });
-} 
+}
 
 const disciplineSeed = async () => {
     const name = 'test_discipline';
@@ -50,20 +60,16 @@ const disciplineSeed = async () => {
 }
 
 const teacherDisciplineSeed = async () => {
-    await prisma.teachersDisciplines.upsert({
-        where: { id: GENERIC_ID },
-        update: {},
-        create: { teacherId: GENERIC_ID, disciplineId: GENERIC_ID }
+    await prisma.teachersDisciplines.create({
+        data: { teacherId: GENERIC_ID, disciplineId: GENERIC_ID }
     });
 }
 
 const testSeed = async () => {
     const name = 'test-name';
     const pdfUrl = 'http://testlink.com';
-    await prisma.tests.upsert({
-        where: { id: GENERIC_ID },
-        update: {},
-        create: { name, pdfUrl, categoryId: GENERIC_ID, teacherDisciplineId: GENERIC_ID }
+    await prisma.tests.create({
+        data: { name, pdfUrl, categoryId: GENERIC_ID, teacherDisciplineId: GENERIC_ID }
     });
 }
 

@@ -17,7 +17,7 @@
     "test": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules jest -i"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node ./prisma/seed.ts"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
